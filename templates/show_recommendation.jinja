@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Laptop Recommendation</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            margin: 5px;
+            padding: 8px 12px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            color: #555;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pagination button:hover {
+            background-color: #ddd;
+        }
+
+        .pagination .active {
+            background-color: #6443a6;
+            color: white;
+        }
+
+        .back-button {
+            text-align: center;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #e2e8f0;
+            border: 1px solid #cbd5e0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #cbd5e0;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900">
+    <header class="h-12 mb-10">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <div class="flex lg:flex-1">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Laptop
+                        Recommendation Servrice</span>
+                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="">
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div>
+
+        <div class="w-3/4 p-10 mx-auto bg-white shadow-md rounded-lg">
+            <h1 class="mb-6 text-4xl font-semibold text-center">Laptop Recommendation Service</h1>
+            <h2 class="mb-4 text-2xl text-black">Your Recommendation is:</h2>
+            <h3 class="text-base font-semibold leading-7 text-indigo-600">{{ message }}</h3>
+            <h4 class="text-base font-semibold leading-7 mb-10">Note: click the title to purchase</h4>
+            <div id="subset-container">
+                {% for index, row in subset.iterrows() %}
+                <div class="py-5 border-b border-gray-100 flex items-center hover:bg-indigo-200 hover:text-gray-800">
+                    <div class="flex min-w-0 gap-x-4">
+                        <img class="h-full w-48 flex-none bg-gray-50 ml-4" src="{{ row['url'] }}"
+                            alt="{{ row['Laptop'] }}">
+                        <div class="min-w-0 flex-auto">
+                            <p class="text-sm font-semibold leading-6 text-gray-900">
+                                <a href="https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313&_nkw={{ row['Laptop'] }}&_sacat=0"
+                                    target="_blank" rel="noopener noreferrer">
+                                    {{ row['Laptop'] }} </a>
+                            </p>
+                            <p class="mt-1 truncate text-xs leading-5 text-gray-500">Status: {{ row['Status'] }},
+                                Brand: {{ row['Brand'] }}, Model: {{ row['Model'] }}</p>
+                            <p class="text-sm font-semibold leading-6 text-gray-900">Storage: {{ row['Storage'] }} -
+                                {{
+                                row['Storage
+                                type'] }}</p>
+                            <p class="text-sm font-semibold leading-6 text-gray-900">GPU: {{ row['GPU'] }}</p>
+                            <p class="text-sm font-semibold leading-6 text-gray-900">Screen: {{ row['Screen'] }}</p>
+                            <p class="text-sm font-semibold leading-6 text-gray-900">Touch: {{ row['Touch'] }}</p>
+                            <p class="text-sm font-semibold leading-6 text-gray-900">{{ row['Final Price'] }} TND
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="pagination" id="pagination-container">
+                <!-- Pagination buttons will be added here dynamically -->
+            </div>
+
+            <div class="back-button" onclick="backToChoicePage()">Back to Choice Page</div>
+        </div>
+    </div>
+
+    <script>
+        // Assuming you have the following information available
+        let totalItems = {{ subset| length }};
+        let perPage = 30;
+        let currentPage = 1
+
+        var totalPages = Math.ceil(totalItems / perPage);
+
+        function showPage(page) {
+            var startIndex = (page - 1) * perPage;
+            var endIndex = startIndex + perPage;
+
+            var items = document.querySelectorAll('#subset-container > div');
+            items.forEach(function (item, index) {
+                if (index >= startIndex && index < endIndex) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function createPaginationButtons() {
+            var paginationContainer = document.getElementById('pagination-container');
+
+            for (var i = 1; i <= totalPages; i++) {
+                var button = document.createElement('button');
+                button.textContent = i;
+                button.addEventListener('click', function (event) {
+                    currentPage = parseInt(event.target.textContent);
+                    updatePaginationButtons();
+                    showPage(currentPage);
+                    window.scrollTo(0, document.body.scrollHeight);
+                });
+
+                if (i === currentPage) {
+                    button.classList.add('active');
+                }
+
+                paginationContainer.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            var buttons = document.querySelectorAll('.pagination button');
+            buttons.forEach(function (button) {
+                button.classList.remove('active');
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add('active');
+                }
+            });
+        }
+
+        function backToChoicePage() {
+            window.location.href = '/';
+        }
+
+        // Initial setup
+        showPage(currentPage);
+        createPaginationButtons();
+    </script>
+
+</body>
+
+</html>

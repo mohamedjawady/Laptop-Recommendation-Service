@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Recommendation Service</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .screen {
+            height: 100vh;
+        }
+
+        .section {
+            flex: 1;
+        }
+
+        .scroll-indicator {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            position: absolute;
+            bottom: 4rem;
+            right: 4rem;
+            z-index: 10;
+        }
+
+        .show-indicator .scroll-indicator {
+            opacity: 1;
+        }
+
+        footer {
+            background-color: #4a5568;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="screen">
+        <div class="section">
+            <header class="bg-white mb-10">
+                <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+                    <div class="flex lg:flex-1">
+                        <a href="#" class="-m-1.5 p-1.5">
+                            <span class="sr-only">Laptop Recommendation Servrice</span>
+                            <img class="h-8 w-auto"
+                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+                        </a>
+
+                    </div>
+                </nav>
+            </header>
+            <div class="bg-white mb-10">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8 py-5">
+                    <div class="mx-auto max-w-2xl lg:text-center">
+                        <h2 class="text-base font-semibold leading-7 text-indigo-600">Laptop Recommendation Service</h2>
+                        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Best advice for
+                            choosing
+                            a laptop</p>
+                        <p class="mt-6 text-lg leading-8 text-gray-600">Fill the form, and find out which of our
+                            products
+                            best
+                            suits your needs.</p>
+                    </div>
+                    <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+                        <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+                            <div class="relative pl-16">
+                                <dt class="text-base font-semibold leading-7 text-gray-900">
+                                    <div
+                                        class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                                        </svg>
+                                    </div>
+                                    Gaming and Design Laptops
+                                </dt>
+                                <dd class="mt-2 text-base leading-7 text-gray-600">Choose one of our gaming/design
+                                    series.
+                                </dd>
+                            </div>
+                            <div class="relative pl-16">
+                                <dt class="text-base font-semibold leading-7 text-gray-900">
+                                    <div
+                                        class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                                        </svg>
+                                    </div>
+                                    Engineering Laptops
+                                </dt>
+                                <dd class="mt-2 text-base leading-7 text-gray-600">A plethora of engineering laptops
+                                    that
+                                    suit
+                                    your simulation software.</dd>
+                            </div>
+                            <div class="relative pl-16">
+                                <dt class="text-base font-semibold leading-7 text-gray-900">
+                                    <div
+                                        class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                        </svg>
+                                    </div>
+                                    Desk work laptops
+                                </dt>
+                                <dd class="mt-2 text-base leading-7 text-gray-600">Find laptops which suit desk work,
+                                    from
+                                    spreadsheet to running sophisticated HR software suits.</dd>
+                            </div>
+                            <div class="relative pl-16">
+                                <dt class="text-base font-semibold leading-7 text-gray-900">
+                                    <div
+                                        class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33" />
+                                        </svg>
+                                    </div>
+                                    Best prices
+                                </dt>
+                                <dd class="mt-2 text-base leading-7 text-gray-600">Pick from a wide range of prices.
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="section">
+            <div class="isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+
+                <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
+                    aria-hidden="true">
+                    <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
+                        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                    </div>
+                </div>
+                <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu"
+                    aria-hidden="true">
+                    <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
+                        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                    </div>
+                </div>
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto max-w-2xl lg:mx-0">
+                        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Choose your laptop</h2>
+                        <p class="mt-6 text-lg leading-8 text-gray-300">Choose a category for your laptop, based on the
+                            usage case and the price.</p>
+                    </div>
+                    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-5">
+                        <form action="/" method="POST" class="space-y-4" id="laptopForm">
+                            <div class="mb-4">
+                                <label for="price" class="text-base font-semibold leading-7 text-white">Price</label>
+                                <select name="price" id="price"
+                                    class="mt-1 block w-full border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 mt-2 text-base leading-7 text-gray-600">
+                                    <option value="High" selected>High</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="usage" class="text-base font-semibold leading-7 text-white">Usage</label>
+                                <select name="usage" id="usage"
+                                    class="mt-1 block w-full border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 mt-2 text-base leading-7 text-gray-600">
+                                    <option value="gaming and design" selected>Gaming and Design</option>
+                                    <option value="desk work">Desk Work</option>
+                                    <option value="engineering">Engineering</option>
+                                </select>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="space-y-4" class="mx-auto max-w-7xl px-6 lg:px-8">
+                                <div class="flex items-center justify-center">
+                                    <button type="submit"
+                                        class="w-40 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fixed bottom-4 right-4 scroll-indicator">
+                <a href="#laptopForm" class="text-gray-900 hover:underline">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 14l-7 7m0 0l-7-7m7 7V3">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+            <footer class="bg-indigo-600 text-white p-4 text-center">
+                <p>&copy; 2023 Laptop Recommendation Service. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+    <script>
+        // JavaScript to handle showing/hiding the scroll indicator and smooth scrolling
+        document.addEventListener('DOMContentLoaded', function () {
+            var scrollIndicator = document.querySelector('.scroll-indicator');
+            var laptopForm = document.getElementById('laptopForm');
+
+            // Show the scroll indicator when the page is loaded
+            scrollIndicator.style.opacity = '1';
+
+            // Check whether the user has scrolled to the form
+            function checkScroll() {
+                var formRect = laptopForm.getBoundingClientRect();
+
+                // If the form is in the viewport, hide the scroll indicator
+                if (formRect.top < window.innerHeight && formRect.bottom >= 0) {
+                    document.body.classList.remove('show-indicator');
+                } else {
+                    document.body.classList.add('show-indicator');
+                }
+            }
+
+            // Smooth scrolling when the link is clicked
+            document.querySelector('.scroll-indicator a').addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // Scroll to the form section
+                laptopForm.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+
+            // Check scroll position on scroll
+            window.addEventListener('scroll', checkScroll);
+
+            // Check scroll position on page load
+            checkScroll();
+        });
+    </script>
+</body>
+
+</html>
