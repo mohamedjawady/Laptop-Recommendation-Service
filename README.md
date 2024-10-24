@@ -40,7 +40,7 @@ Make sure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/laptop-recommendation.git
+   git clone https://github.com/mohamedjawady/laptop-recommendation.git
    ```
 
 2. Navigate to the project directory:
